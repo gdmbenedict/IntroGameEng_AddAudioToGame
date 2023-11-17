@@ -2881,7 +2881,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2981,8 +2981,8 @@ MonoBehaviour:
   asteroidExplosion: {fileID: 8300000, guid: 317dc25c57529b447a28dab260084b8b, type: 3}
   playerDamage: {fileID: 8300000, guid: 312654aafcc49e94faec5c20a28292fd, type: 3}
   playerExplosion: {fileID: 8300000, guid: d7d838ac37cfe32428fabea968d27411, type: 3}
-  BgMusicGameplay: {fileID: 8300000, guid: 3637e9f0067dce545917d8bd0bdbb13f, type: 3}
-  BgMusicTitleScreen: {fileID: 8300000, guid: 3637e9f0067dce545917d8bd0bdbb13f, type: 3}
+  BgMusicGameplay: {fileID: 8300000, guid: 117c550eac6969b45ae84768265b6ba8, type: 3}
+  BgMusicTitleScreen: {fileID: 8300000, guid: 58361a4ef3dfb544ba42b726636ed2ef, type: 3}
 --- !u!4 &1337980917
 Transform:
   m_ObjectHideFlags: 0
