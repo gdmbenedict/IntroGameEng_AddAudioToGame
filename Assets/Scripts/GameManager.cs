@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private GameObject asteroidSpawner;
 
     private bool gameOver;
+    private bool exitGame = false;
+    private bool startGame = false;
     private enum GameState { MainMenu, Gameplay, GameOver, Paused }
 
     private GameState gameState;
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        sfxManager.BGMusicMainMenu();        
+        sfxManager.BGMusicMainMenu();
     }
 
 
@@ -121,6 +123,22 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
+
+        //new button checks
+
+        //start button
+        if (startGame && !sfxManager.GetComponent<AudioSource>().isPlaying)
+        {
+            startGame = false;
+            StartGame();
+        }
+        //exit button
+        if (exitGame && !sfxManager.GetComponent<AudioSource>().isPlaying)
+        {
+            exitGame = false;
+            QuitGame();
+        }
+    
     }
 
     
@@ -150,5 +168,17 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    
+    //logic for start button
+    public void StartButton()
+    {
+        sfxManager.StartSFX();
+        startGame = true;
+    }
+
+    //logic for quit button
+    public void QuitButton()
+    {
+        sfxManager.ExitSFX();
+        exitGame = true;
+    }
 }

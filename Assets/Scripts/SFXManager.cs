@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
+    //SFX
     public AudioClip playerShoot;
     public AudioClip asteroidExplosion;
     public AudioClip playerDamage;
     public AudioClip playerExplosion;
+    public AudioClip Start;
+    public AudioClip Exit;
+
+    //Music
     public AudioClip BgMusicGameplay;
     public AudioClip BgMusicTitleScreen;
 
-    private AudioSource SFXaudioSource;
+    //Voice Lines
 
+    //Audio Sources
+    private AudioSource SFXaudioSource;
     private AudioSource BgMusicAudioSource;
 
     public void Awake()
@@ -64,5 +72,17 @@ public class SFXManager : MonoBehaviour
         BgMusicAudioSource.GetComponent<AudioSource>().clip = BgMusicGameplay;
         BgMusicAudioSource.Play();
 
+    }
+
+    //play start sound
+    public void StartSFX()
+    {
+        SFXaudioSource.PlayOneShot(Start);
+    }
+
+    //plays ecit sound
+    public void ExitSFX()
+    {
+        SFXaudioSource.PlayOneShot(Exit);
     }
 }
