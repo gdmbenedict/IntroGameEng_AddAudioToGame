@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     private bool gameOver;
     private bool exitGame = false;
     private bool startGame = false;
+    private bool returnMenu = false;
+    private bool startFade = true;
     private enum GameState { MainMenu, Gameplay, GameOver, Paused }
 
     private GameState gameState;
@@ -78,7 +80,14 @@ public class GameManager : MonoBehaviour
                 GameOverUI.SetActive(false);                
                 break;
 
-            case GameState.Gameplay:                
+            case GameState.Gameplay:
+
+                if (!startFade)
+                {
+                    startFade = true;
+                    sfxManager.FadeTransition();
+                }
+
                 MainMenuUI.SetActive(false);
                 GameplayUI.SetActive(true);
                 PausedMenuUI.SetActive(false);
@@ -99,8 +108,14 @@ public class GameManager : MonoBehaviour
                 }
                 break;
 
-            case GameState.GameOver:               
+            case GameState.GameOver:
 
+                if (startFade)
+                {
+                    startFade = false;
+                    sfxManager.FadeTransition();
+                }
+                
                 MainMenuUI.SetActive(false);
                 GameplayUI.SetActive(false);
                 PausedMenuUI.SetActive(false);
@@ -138,14 +153,23 @@ public class GameManager : MonoBehaviour
             exitGame = false;
             QuitGame();
         }
-    
-    }
+        //exit button
+        if (returnMenu && !sfxManager.GetComponent<AudioSource>().isPlaying)
+        {
+            returnMenu = false;
+            LoadMainMenu();
+        }
 
-    
+    }
 
 
     public void StartGame()
     {
+        if (!startFade)
+        {
+            sfxManager.stopGameOver();
+            startFade=true;
+        }
         gameState = GameState.Gameplay;
         shield = 3;
         score = 0;
@@ -180,5 +204,13 @@ public class GameManager : MonoBehaviour
     {
         sfxManager.ExitSFX();
         exitGame = true;
+    }
+
+    //logic for main menu button
+    public void MainMenuButton()
+    {
+        sfxManager.ExitSFX();
+        returnMenu = true;
+
     }
 }
